@@ -1,4 +1,10 @@
+# deployment
 deployment/.env
 deployment/logs
+
+# wordpress
 wp-config.php
+wp-content/debug.log
+
+# ide
 .idea
