@@ -4,15 +4,18 @@ ARG user
 ARG uid
 
 RUN apt-get update && apt-get install -y \
-    libpng-dev \
+    libzip-dev zip \
+    zlib1g-dev \
+    libjpeg-dev \
+    libjpeg62-turbo-dev \
     libfreetype6-dev \
-    libjpeg62-turbo-dev
+    libpng-dev
 
-RUN docker-php-ext-install gd mysqli
-
-RUN docker-php-ext-enable mysqli
+RUN docker-php-ext-install mysqli
 
 RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/
+
+RUN docker-php-ext-install -j$(nproc) gd zip
 
 RUN useradd -G www-data,root -u $uid $user
 
