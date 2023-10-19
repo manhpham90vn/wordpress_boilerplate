@@ -1,0 +1,1 @@
+docker exec -i mysql_container /usr/bin/mysql -uroot -ptoor wordpress < ../mysql/wordpress.sql

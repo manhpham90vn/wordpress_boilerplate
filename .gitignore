@@ -1,0 +1,4 @@
+deployment/.env
+deployment/logs
+wp-config.php
+.idea

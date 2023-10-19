@@ -1,0 +1,77 @@
+version: "3.9"
+
+services:
+  nginx:
+    image: nginx:1.25.1-alpine
+    container_name: nginx_container
+    restart: always
+    ports:
+      - "80:80"
+    env_file:
+      - .env
+    volumes:
+      - ../:/var/www/html
+      - ./nginx:/etc/nginx/conf.d
+      - ./logs/:/var/log/nginx
+    depends_on:
+      - php-fpm
+    networks:
+      - app-network
+
+  mysql:
+    image: mysql:8.0.34
+    container_name: mysql_container
+    restart: always
+    ports:
+      - "3306:3306"
+    env_file:
+      - .env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./mysql/wordpress.sql:/docker-entrypoint-initdb.d/wordpress.sql
+    networks:
+      - app-network
+
+  php-fpm:
+    container_name: php-fpm_container
+    restart: always
+    env_file:
+      - .env
+    build:
+      args:
+        user: manh
+        uid: 1000
+      context: ./php-fpm
+    volumes:
+      - ../:/var/www/html
+    networks:
+      - app-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.2.1
+    container_name: phpmyadmin_container
+    restart: always
+    ports:
+      - "8080:80"
+    env_file:
+      - .env
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
