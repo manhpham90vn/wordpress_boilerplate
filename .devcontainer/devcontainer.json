@@ -1,0 +1,27 @@
+{
+	"name": "Wordpress",
+
+	"dockerComposeFile": [
+		"docker-compose.yml"
+	],
+
+	"initializeCommand": ".devcontainer/initializeCommand.sh",
+
+	"workspaceFolder": "/var/www/html",
+
+	"service": "php-fpm",
+	
+	"mounts": [
+		"type=bind,source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/root/.ssh,readonly"
+	],
+
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ecmel.vscode-html-css"
+			]
+		}
+	},
+
+	"postCreateCommand": ".devcontainer/postCreateCommand.sh"
+}

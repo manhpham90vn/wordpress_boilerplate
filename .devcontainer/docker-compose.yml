@@ -43,9 +43,6 @@ services:
     env_file:
       - .env
     build:
-      args:
-        user: manh
-        uid: 1000
       context: ./php-fpm
     volumes:
       - ../:/var/www/html
