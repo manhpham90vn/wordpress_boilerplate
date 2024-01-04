@@ -1,1 +1,0 @@
-docker exec mysql_container /usr/bin/mysqldump -u root --password=toor wordpress > ../mysql/wordpress.sql

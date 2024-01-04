@@ -1,0 +1,1 @@
+docker exec -i wordpress_boilerplate_database /usr/bin/mysql -uroot -ptoor wordpress < .devcontainer/mysql/wordpress.sql

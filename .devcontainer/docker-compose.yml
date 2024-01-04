@@ -1,26 +1,29 @@
 version: "3.9"
 
 services:
-  nginx:
-    image: nginx:1.25.1-alpine
-    container_name: nginx_container
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: wordpress_boilerplate_app
     restart: always
     ports:
       - "80:80"
-    env_file:
-      - .env
+    command: sleep infinity  
     volumes:
       - ../:/var/www/html
-      - ./nginx:/etc/nginx/conf.d
+      - ~/.ssh:/home/vscode/.ssh:cached
+      - ~/.gitconfig:/home/vscode/.gitconfig:cached
+      - ./nginx:/etc/nginx/sites-available
       - ./logs/:/var/log/nginx
     depends_on:
-      - php-fpm
+      - database
     networks:
       - app-network
 
-  mysql:
+  database:
     image: mysql:8.0.34
-    container_name: mysql_container
+    container_name: wordpress_boilerplate_database
     restart: always
     ports:
       - "3306:3306"
@@ -37,32 +40,20 @@ services:
     networks:
       - app-network
 
-  php-fpm:
-    container_name: php-fpm_container
-    restart: always
-    env_file:
-      - .env
-    build:
-      context: ./php-fpm
-    volumes:
-      - ../:/var/www/html
-    networks:
-      - app-network
-
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:5.2.1
-    container_name: phpmyadmin_container
+    container_name: wordpress_boilerplate_phpmyadmin
     restart: always
     ports:
       - "8080:80"
     env_file:
       - .env
     environment:
-      PMA_HOST: mysql
+      PMA_HOST: database
       PMA_PORT: 3306
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     depends_on:
-      - mysql
+      - database
     networks:
       - app-network
 

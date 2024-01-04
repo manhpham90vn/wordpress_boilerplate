@@ -1,0 +1,1 @@
+docker exec wordpress_boilerplate_database /usr/bin/mysqldump -u root --password=toor wordpress > .devcontainer/mysql/wordpress.sql

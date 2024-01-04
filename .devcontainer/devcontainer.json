@@ -1,27 +1,50 @@
 {
 	"name": "Wordpress",
-
 	"dockerComposeFile": [
 		"docker-compose.yml"
 	],
-
 	"initializeCommand": ".devcontainer/initializeCommand.sh",
-
 	"workspaceFolder": "/var/www/html",
-
-	"service": "php-fpm",
-	
-	"mounts": [
-		"type=bind,source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/root/.ssh,readonly"
-	],
-
+	"service": "app",
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"ecmel.vscode-html-css"
-			]
+				"ecmel.vscode-html-css",
+				"GitHub.copilot",
+				"GitHub.copilot-chat",
+				"DEVSENSE.composer-php-vscode",
+				"DEVSENSE.intelli-php-vscode",
+				"DEVSENSE.phptools-vscode",
+				"DEVSENSE.profiler-php-vscode"
+			],
+			"settings": {
+				"terminal.integrated.shell.osx": "/bin/zsh",
+				"terminal.integrated.defaultProfile.linux": "zsh",
+				"editor.formatOnSave": true,
+				"files.autoSave": "afterDelay",
+				"files.autoSaveDelay": 1000,
+				"editor.codeActionsOnSave": {
+					"source.organizeImports": true
+				}
+			}
 		}
 	},
-
-	"postCreateCommand": ".devcontainer/postCreateCommand.sh"
+	"postCreateCommand": ".devcontainer/postCreateCommand.sh",
+	"features": {
+		"ghcr.io/devcontainers/features/node:1": {
+			"version": "20.10.0"
+		},
+		"ghcr.io/devcontainers/features/common-utils:2": {
+			"configureZshAsDefaultShell": "true",
+			"username": "vscode",
+			"userUid": "1000",
+			"userGid": "1000"
+		},
+		"ghcr.io/devcontainers/features/git:1": {
+			"version": "latest",
+			"ppa": "false"
+		},
+		"ghcr.io/devcontainers/features/github-cli:1": {}
+	},
+	"remoteUser": "vscode"
 }
