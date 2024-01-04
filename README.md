@@ -8,7 +8,7 @@
 - phpmyadmin
 - devcontainer
 
-## Build
+## Run
 ```shell
 sudo service nginx start
 sudo service php8.2-fpm start
