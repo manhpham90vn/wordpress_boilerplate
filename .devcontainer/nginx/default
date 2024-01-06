@@ -5,6 +5,8 @@ server {
     root /var/www/html;
     error_log  /var/log/nginx/error.log;
     access_log /var/log/nginx/access.log;
+    fastcgi_buffers 16 16k; 
+    fastcgi_buffer_size 32k;
 
     location / {
         try_files $uri $uri/ /index.php?q=$uri$args;
