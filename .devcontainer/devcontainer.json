@@ -15,7 +15,8 @@
 				"DEVSENSE.composer-php-vscode",
 				"DEVSENSE.intelli-php-vscode",
 				"DEVSENSE.phptools-vscode",
-				"DEVSENSE.profiler-php-vscode"
+				"DEVSENSE.profiler-php-vscode",
+				"ms-azuretools.vscode-docker"
 			],
 			"settings": {
 				"terminal.integrated.shell.osx": "/bin/zsh",
