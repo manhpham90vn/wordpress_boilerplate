@@ -12,22 +12,24 @@
                 <div class="site-footer__col-two">
                     <h3 class="headline headline--small">Explore</h3>
                     <nav class="nav-list">
-						<?php
-						wp_nav_menu( array(
-							'theme_location' => 'footerMenu1'
-						) );
-						?>
+                        <?php
+                        wp_nav_menu(
+                            array(
+                                'theme_location' => 'footerMenu1'
+                            ));
+                        ?>
                     </nav>
                 </div>
 
                 <div class="site-footer__col-three">
                     <h3 class="headline headline--small">Learn</h3>
                     <nav class="nav-list">
-						<?php
-						wp_nav_menu( array(
-							'theme_location' => 'footerMenu2'
-						) );
-						?>
+                        <?php
+                        wp_nav_menu(
+                            array(
+                                'theme_location' => 'footerMenu2'
+                            ));
+                        ?>
                     </nav>
                 </div>
             </div>
@@ -37,22 +39,24 @@
                 <nav>
                     <ul class="min-list social-icons-list group">
                         <li>
-                            <a href="#" class="social-color-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            <a href="#" class="social-color-facebook"><i class="fa fa-facebook"
+                                    aria-hidden="true"></i></a>
                         </li>
                         <li>
                             <a href="#" class="social-color-twitter"><i class="fa fa-twitter"
-                                                                        aria-hidden="true"></i></a>
+                                    aria-hidden="true"></i></a>
                         </li>
                         <li>
                             <a href="#" class="social-color-youtube"><i class="fa fa-youtube"
-                                                                        aria-hidden="true"></i></a>
+                                    aria-hidden="true"></i></a>
                         </li>
                         <li>
-                            <a href="#" class="social-color-linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                            <a href="#" class="social-color-linkedin"><i class="fa fa-linkedin"
+                                    aria-hidden="true"></i></a>
                         </li>
                         <li>
                             <a href="#" class="social-color-instagram"><i class="fa fa-instagram"
-                                                                          aria-hidden="true"></i></a>
+                                    aria-hidden="true"></i></a>
                         </li>
                     </ul>
                 </nav>
@@ -63,4 +67,5 @@
 
 <?php wp_footer(); ?>
 </body>
+
 </html>
